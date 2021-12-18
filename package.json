@@ -1,0 +1,21 @@
+{
+  "name": "imgur_bruteforcer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/bruteforce.js",
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.12.0",
+    "express": "^4.17.2",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "nsfwjs": "^2.4.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

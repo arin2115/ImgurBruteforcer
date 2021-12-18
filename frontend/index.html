@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <title>Imgur Viewer</title>
+
+        <style>
+            body {
+                background-color: gray;
+            }
+
+            .container {
+                text-align: center;
+                margin: auto;
+                width: fit-content;
+                align-items: center;
+                align-content: center;
+            }
+
+            #imgurUrls {
+                background-color: rgb(92, 92, 92);
+                border-color: black;
+                border-radius: 15px;
+                border-width: 2px;
+                color: black;
+                min-width: 380px;
+                width: 380px;
+                text-align: center;
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+                min-height: 150px;
+                height: 150px;
+            }
+
+            #images img {
+                max-width: 480px;
+                max-height: 240px;
+            }
+
+            .btn {
+                padding: 15px;
+                background: none;
+                border: 2px solid black;
+                margin-top: 5px;
+                border-radius: 30px;
+                color: white;
+                width: 60%;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <h1>Imgur Viewer</h1>
+
+            <textarea id="imgurUrls"></textarea> <br>
+            <button class="btn" id="submitBtn" onclick="submit()">Submit</button> <br>
+            <button class="btn" id="getListBtn" onclick="getList()">Get current list</button>
+            <button class="btn" id="randImgBtn" onclick="randImg()">Random image</button>
+
+            <br>
+            <br>
+
+            <div id="images">
+
+            </div>
+        </div>
+
+        <script>
+
+            var serverIp = "https://...";
+
+            function submit() {
+
+                var imagesDiv = document.getElementById("images");
+                var urls = document.getElementById("imgurUrls").value;
+                urls = urls.split("\n");
+
+                if (urls.length > 100) {
+                    alert("Be careful. This may lag your browser.")
+                }
+                
+                for (var i = 0; i < urls.length; i++) {
+                    var newNode = document.createElement('div');
+                    newNode.innerHTML = "<a href=" + urls[i] + "><img src=" + urls[i] + "></a>";
+                    imagesDiv.appendChild(newNode);
+                }
+
+            }
+
+            function getList() {
+                fetch(serverIp + '/list')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById("imgurUrls").value = data;
+                    });
+            }
+
+            function randImg() {
+
+            }
+
+        </script>
+
+    </body>
+</html>
